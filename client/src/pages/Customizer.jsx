@@ -2,11 +2,12 @@ import { AnimatePresence, motion, warning } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useSnapshot } from "valtio";
 import config from "../config/config";
-import state from "../store";
-import { download } from "../assets";
+import { downloadState, state } from "../store";
+import { save } from "../assets";
 import { downloadCanvasToImage, reader } from "../config/helpers";
 import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
+
 import {
   AiPicker,
   FilePicker,
@@ -16,6 +17,10 @@ import {
 } from "../components/";
 
 export default function Customizer() {
+  const handleButtonClick = () => {
+    downloadState.shouldDownload = true;
+  };
+
   const snap = useSnapshot(state);
   const [file, setFile] = useState("");
   const [prompt, setPrompt] = useState("");
@@ -24,13 +29,21 @@ export default function Customizer() {
   const [activeFilterTab, setActiveFilterTab] = useState({
     logoShirt: true,
     stylishShirt: false,
+    capture: false,
   });
   const generateTabContent = () => {
     switch (activeEditorTab) {
       case "colorpicker":
-        return <ColorPicker />;
+        return <ColorPicker setActiveEditorTab={setActiveEditorTab} />;
       case "filepicker":
-        return <FilePicker setFile={setFile} file={file} readFile={readFile} />;
+        return (
+          <FilePicker
+            setFile={setFile}
+            file={file}
+            readFile={readFile}
+            setActiveEditorTab={setActiveEditorTab}
+          />
+        );
       case "aipicker":
         return (
           <AiPicker
@@ -38,6 +51,7 @@ export default function Customizer() {
             setPrompt={setPrompt}
             generatingImg={generatingImg}
             handleSubmit={handleSubmit}
+            setActiveEditorTab={setActiveEditorTab}
           />
         );
       default:
@@ -82,6 +96,7 @@ export default function Customizer() {
       case "stylishShirt":
         state.isFullTexture = !activeFilterTab[tabName];
         break;
+
       default:
         state.isFullTexture = true;
         state.isLogoTexture = false;
@@ -147,6 +162,9 @@ export default function Customizer() {
                 isActiveTab={activeFilterTab[tab.name]}
               />
             ))}
+            <div className={`tab-btn`} onClick={handleButtonClick}>
+              <img src={save} alt={"download"} />
+            </div>
           </motion.div>
         </>
       )}

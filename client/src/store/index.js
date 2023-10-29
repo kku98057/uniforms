@@ -1,5 +1,5 @@
 import { proxy } from "valtio";
-const state = proxy({
+export const state = proxy({
   intro: true,
   color: "#efbd48",
   isLogoTexture: true,
@@ -7,5 +7,6 @@ const state = proxy({
   logoDecal: "./threejs.png",
   fullDecal: "./threejs.png",
 });
-
-export default state;
+export const downloadState = proxy({
+  shouldDownload: false,
+});

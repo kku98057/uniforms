@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { useRef } from "react";
 import { useSnapshot } from "valtio";
-import state from "../store";
+import { state } from "../store";
 
 export default function Backdrop() {
   const shadows = useRef();

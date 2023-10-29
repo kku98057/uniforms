@@ -1,13 +1,23 @@
 import CustomButton from "./CustomButton";
-
+import { AiOutlineCloseCircle } from "react-icons/ai";
 export default function AiPicker({
   prompt,
   setPrompt,
   generatingImg,
   handleSubmit,
+  setActiveEditorTab,
 }) {
   return (
     <div className="aipicker-container">
+      <button
+        type="button"
+        className="close"
+        onClick={() => {
+          setActiveEditorTab("");
+        }}
+      >
+        <AiOutlineCloseCircle />
+      </button>
       <textarea
         className="aipicker-textarea"
         placeholder="'Ask AI..."

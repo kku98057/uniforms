@@ -1,5 +1,5 @@
 import { useSnapshot } from "valtio";
-import state from "../store";
+import { state } from "../store";
 
 export default function Tab({ tab, handleClick, isFilterTab, isActiveTab }) {
   const snap = useSnapshot(state);

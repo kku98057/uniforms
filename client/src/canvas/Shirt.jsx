@@ -2,7 +2,9 @@ import { Decal, useGLTF, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { useSnapshot } from "valtio";
-import state from "../store";
+import * as THREE from "three";
+import { state } from "../store";
+import { useEffect } from "react";
 export default function Shirt() {
   const snap = useSnapshot(state);
   const { nodes, materials } = useGLTF("/shirt_baked.glb");
@@ -12,24 +14,29 @@ export default function Shirt() {
   useFrame((state, delta) => {
     easing.dampC(materials.lambert1.color, snap.color, 0.25, delta);
   });
-
+  useEffect(() => {
+    console.log(nodes);
+  }, [fullTexture]);
   const stateString = JSON.stringify(snap);
   return (
-    <group key={stateString}>
+    <group key={stateString} scale={0.8}>
       <mesh
-        castShadow
         geometry={nodes.T_Shirt_male.geometry}
         material={materials.lambert1}
-        material-roughness={1}
         dispose={null}
       >
         {snap.isFullTexture && (
-          <Decal
-            position={[0, 0, 0]}
-            rotation={[0, 0, 0]}
-            scale={1}
+          <meshStandardMaterial
+            side={THREE.DoubleSide}
             map={fullTexture}
+            transparent={false} // 투명도를 비활성화합니다.
+            depthWrite={true}
+            depthTest={true}
+            opacity={1} // 완전 불투명하게 설정합니다.
+            blending={THREE.NormalBlending}
           />
+          // <Decal position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1}>
+          // </Decal>
         )}
         {snap.isLogoTexture && (
           <Decal

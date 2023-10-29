@@ -1,8 +1,22 @@
 import CustomButton from "./CustomButton";
-
-export default function FilePicker({ file, setFile, readFile }) {
+import { AiOutlineCloseCircle } from "react-icons/ai";
+export default function FilePicker({
+  file,
+  setFile,
+  readFile,
+  setActiveEditorTab,
+}) {
   return (
     <div className="filepicker-container">
+      <button
+        type="button"
+        className="close"
+        onClick={() => {
+          setActiveEditorTab("");
+        }}
+      >
+        <AiOutlineCloseCircle />
+      </button>
       <div className="flex-1 flex flex-col">
         <input
           type="file"
