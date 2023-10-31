@@ -73,10 +73,11 @@ export default function Customizer() {
         }),
       });
       const data = await response.json();
+      console.log(data);
 
       handleDecals(type, `data:image/png;base64,${data.photo}`);
     } catch (error) {
-      alert(error);
+      alert("현재 사용할 수 없습니다.");
     } finally {
       setGeneratingImg(false);
       setActiveEditorTab("");

@@ -23,7 +23,7 @@ export default function AiPicker({
       </button>
       <textarea
         className="aipicker-textarea"
-        placeholder="'Ask AI..."
+        placeholder="'Ask AI...(반드시 영어로 입력해주세요.)"
         rows={5}
         value={prompt}
         maxLength={1000}
@@ -33,7 +33,7 @@ export default function AiPicker({
         {generatingImg ? (
           <CustomButton
             type="outline"
-            title="Asking AI..(반드시 영어로 작성해주세요)."
+            title="Asking AI..."
             customStyles="text-xs"
           />
         ) : (

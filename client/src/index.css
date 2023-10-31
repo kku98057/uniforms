@@ -40,7 +40,7 @@ html {
 }
 
 .filtertabs-container {
-  @apply absolute left-0 right-0 z-10 flex flex-wrap items-center justify-center w-full gap-4 bottom-5;
+  @apply fixed left-0 right-0 z-10 flex flex-wrap items-center justify-center w-full gap-4 bottom-5;
 }
 
 .aipicker-container {
@@ -92,13 +92,16 @@ input[type="file"] {
 }
 .close {
   position: absolute;
-  top: -20px;
-  right: 0;
-  width: 20px;
+  top: -25px;
+  right: 0px;
+  cursor: pointer;
+
+  width: 16px;
   height: 20px;
 
   font-size: 20px;
 }
+
 .popup {
   width: 100%;
   height: 100dvh;
@@ -122,13 +125,13 @@ input[type="file"] {
   flex-direction: column;
   position: relative;
 }
-.close {
+/* .close {
   position: absolute;
   top: 10px;
   right: 10px;
   cursor: pointer;
   width: 16px;
-}
+} */
 .popup_wrap h3 {
   margin-bottom: 30px;
   font-size: 22px;
