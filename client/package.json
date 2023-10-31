@@ -1,5 +1,6 @@
 {
-  "name": "client",
+  "name": "customizer",
+  "homepage": "/customizer",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -18,7 +19,9 @@
     "react-color": "^2.19.3",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
+    "react-router-dom": "^6.17.0",
     "three": "^0.157.0",
+    "valtio": "^1.11.3",
     "voltio": "^0.1.0"
   },
   "devDependencies": {

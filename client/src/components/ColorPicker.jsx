@@ -2,10 +2,12 @@ import { SketchPicker } from "react-color";
 import { useSnapshot } from "valtio";
 import { state } from "../store";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { useEffect } from "react";
 export default function ColorPicker({ setActiveEditorTab }) {
   const snap = useSnapshot(state);
+
   return (
-    <div className="absolute left-full ml-3">
+    <div className="absolute ml-3 left-full">
       <button
         type="button"
         className="close"

@@ -6,8 +6,9 @@ import {
   headTextAnimation,
   slideAnimation,
 } from "../config/motion";
-import { state } from "../store";
+
 import { CustomButton } from "../components";
+import { state } from "../store";
 
 export default function Home() {
   const snap = useSnapshot(state);
@@ -20,20 +21,20 @@ export default function Home() {
             <img
               src="./threejs.png"
               alt="logo"
-              className="w-8 h-8 object-contain"
+              className="object-contain w-8 h-8"
             />
           </motion.header>
           <motion.div className="home-content" {...headContainerAnimation}>
             <motion.div {...headTextAnimation}>
               <h1 className="head-text">
-                Let's <br className="xl:block hidden" /> Do It
+                Let's <br className="hidden xl:block" /> Do It
               </h1>
             </motion.div>
             <motion.div
               {...headContentAnimation}
               className="flex flex-col gap-5"
             >
-              <p className="max-w-md font-normal text-gray-600 text-base">
+              <p className="max-w-md text-base font-normal text-gray-600">
                 Create your unique and exclusive shirt with our brand-new 3D
                 customization toll <strong>Unleash your imagination</strong> and
                 define your own style.

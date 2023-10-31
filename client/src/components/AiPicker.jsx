@@ -1,5 +1,8 @@
+import { useEffect } from "react";
 import CustomButton from "./CustomButton";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { useSnapshot } from "valtio";
+
 export default function AiPicker({
   prompt,
   setPrompt,
@@ -23,6 +26,7 @@ export default function AiPicker({
         placeholder="'Ask AI..."
         rows={5}
         value={prompt}
+        maxLength={1000}
         onChange={(e) => setPrompt(e.target.value)}
       />
       <div className="flex flex-wrap gap-3">

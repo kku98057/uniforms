@@ -4,20 +4,20 @@ import { easing } from "maath";
 import { useSnapshot } from "valtio";
 import * as THREE from "three";
 import { state } from "../store";
-import { useEffect } from "react";
+
 export default function Shirt() {
   const snap = useSnapshot(state);
-  const { nodes, materials } = useGLTF("/shirt_baked.glb");
+
+  const { nodes, materials } = useGLTF("/customizer/shirt_baked.glb");
   const logoTexture = useTexture(snap.logoDecal);
   const fullTexture = useTexture(snap.fullDecal);
 
   useFrame((state, delta) => {
     easing.dampC(materials.lambert1.color, snap.color, 0.25, delta);
   });
-  useEffect(() => {
-    console.log(nodes);
-  }, [fullTexture]);
+
   const stateString = JSON.stringify(snap);
+
   return (
     <group key={stateString} scale={0.8}>
       <mesh

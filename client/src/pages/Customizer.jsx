@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSnapshot } from "valtio";
 import config from "../config/config";
 import { downloadState, state } from "../store";
-import { save } from "../assets";
+
 import { downloadCanvasToImage, reader } from "../config/helpers";
 import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
@@ -61,6 +61,7 @@ export default function Customizer() {
 
   const handleSubmit = async (type) => {
     if (!prompt) return alert("Please enter a prompt");
+
     try {
       // 콜 백엔드 ai이미지
       setGeneratingImg(true);
@@ -72,7 +73,7 @@ export default function Customizer() {
         }),
       });
       const data = await response.json();
-      console.log(data);
+
       handleDecals(type, `data:image/png;base64,${data.photo}`);
     } catch (error) {
       alert(error);
@@ -84,6 +85,7 @@ export default function Customizer() {
   const handleDecals = (type, result) => {
     const decaleType = DecalTypes[type];
     state[decaleType.stateProperty] = result;
+
     if (!activeFilterTab[decaleType.filterTab]) {
       handleActiveFilterTab(decaleType.filterTab);
     }
@@ -125,7 +127,7 @@ export default function Customizer() {
             className="absolute top-0 left-0 z-10"
             {...slideAnimation("left")}
           >
-            <div className="flex items-centers min-h-screen">
+            <div className="flex min-h-screen items-centers">
               <div className="editortabs-container tabs">
                 {EditorTabs.map((tab) => (
                   <Tab
@@ -163,7 +165,7 @@ export default function Customizer() {
               />
             ))}
             <div className={`tab-btn`} onClick={handleButtonClick}>
-              <img src={save} alt={"download"} />
+              <img src="/customizer/save.png" alt={"download"} />
             </div>
           </motion.div>
         </>
