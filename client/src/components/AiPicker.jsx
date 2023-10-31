@@ -33,7 +33,7 @@ export default function AiPicker({
         {generatingImg ? (
           <CustomButton
             type="outline"
-            title="Asking AI..."
+            title="Asking AI..(반드시 영어로 작성해주세요)."
             customStyles="text-xs"
           />
         ) : (
